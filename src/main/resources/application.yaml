@@ -1,0 +1,30 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: donaton-ms-logistica
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bd_logistica
+    username: postgres
+    password: hola1234
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  cloud:
+    compatibility-verifier:
+      enabled: false
+
+donaton:
+  ms:
+    donaciones:
+      url: http://localhost:8081/api/donaciones
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
