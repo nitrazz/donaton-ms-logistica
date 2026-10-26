@@ -4,27 +4,33 @@ import com.gestionDonaton.gestion_logistica.client.DonacionClient;
 import com.gestionDonaton.gestion_logistica.dto.EnvioRequestDTO;
 import com.gestionDonaton.gestion_logistica.dto.EnvioResponseDTO;
 import com.gestionDonaton.gestion_logistica.service.EnvioService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/envios")
-@RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 @Tag(name = "Gestión de Envíos", description = "Endpoints para la planificación, seguimiento y procesamiento automático de envíos de donaciones")
 public class EnvioController {
 
     private final EnvioService envioService;
     private final DonacionClient donacionClient;
+
+    // Constructor explícito para inyección de dependencias de Spring (Reemplaza a @RequiredArgsConstructor)
+    @Autowired
+    public EnvioController(EnvioService envioService, DonacionClient donacionClient) {
+        this.envioService = envioService;
+        this.donacionClient = donacionClient;
+    }
 
     @PostMapping
     @Operation(

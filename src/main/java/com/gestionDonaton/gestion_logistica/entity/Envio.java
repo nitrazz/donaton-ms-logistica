@@ -8,6 +8,14 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -19,7 +27,6 @@ public class Envio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     @Column(name = "donacion_id", nullable = false)
     private Long donacionId;
@@ -46,4 +53,26 @@ public class Envio {
             this.estado = "EN_PREPARACION";
         }
     }
+
+    // ── Métodos de acceso nativos para garantizar compatibilidad con la compilación ──
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public Long getDonacionId() { return donacionId; }
+    public void setDonacionId(Long donacionId) { this.donacionId = donacionId; }
+
+    public String getCentroAcopioOrigen() { return centroAcopioOrigen; }
+    public void setCentroAcopioOrigen(String centroAcopioOrigen) { this.centroAcopioOrigen = centroAcopioOrigen; }
+
+    public String getDestino() { return destino; }
+    public void setDestino(String destino) { this.destino = destino; }
+
+    public String getTipoTransporte() { return tipoTransporte; }
+    public void setTipoTransporte(String tipoTransporte) { this.tipoTransporte = tipoTransporte; }
+
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
+
+    public LocalDateTime getFechaCreacion() { return fechaCreacion; }
+    public void setFechaCreacion(LocalDateTime fechaCreacion) { this.fechaCreacion = fechaCreacion; }
 }
