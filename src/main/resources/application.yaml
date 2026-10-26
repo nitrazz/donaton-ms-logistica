@@ -4,27 +4,20 @@ server:
 spring:
   application:
     name: donaton-ms-logistica
+  rabbitmq:
+    host: 54.221.4.1
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        acknowledge-mode: manual # Para gestionar ACK manuales o reenvío a DLQ si ocurre un error
 
-  datasource:
-    url: jdbc:postgresql://localhost:5432/bd_logistica
-    username: postgres
-    password: hola1234
-    driver-class-name: org.postgresql.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-
-  cloud:
-    compatibility-verifier:
-      enabled: false
-
-donaton:
-  ms:
-    donaciones:
-      url: http://localhost:8081/api/donaciones
-logging:
-  level:
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+app:
+  rabbitmq:
+    exchanges:
+      donaciones: donaciones.direct
+    queues:
+      logistica: cola.documentos
+    routing-keys:
+      documento-generado: documento.generado

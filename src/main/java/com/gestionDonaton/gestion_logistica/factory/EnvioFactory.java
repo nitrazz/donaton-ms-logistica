@@ -1,33 +1,31 @@
 package com.gestionDonaton.gestion_logistica.factory;
 
+import com.gestionDonaton.gestion_logistica.dto.DonacionDTO;
 import com.gestionDonaton.gestion_logistica.dto.EnvioRequestDTO;
 import com.gestionDonaton.gestion_logistica.entity.Envio;
 import org.springframework.stereotype.Component;
-import com.gestionDonaton.gestion_logistica.dto.DonacionDTO;
-
 
 @Component
 public class EnvioFactory {
 
-
     public Envio crearEnvio(EnvioRequestDTO request) {
-        return Envio.builder()
-                .donacionId(request.getDonacionId())
-                .centroAcopioOrigen(request.getCentroAcopioOrigen())
-                .destino(request.getDestino())
-                .tipoTransporte(validarTipoTransporte(request.getTipoTransporte()))
-                .estado("EN_PREPARACION")
-                .build();
+        Envio envio = new Envio();
+        envio.setDonacionId(request.getDonacionId());
+        envio.setCentroAcopioOrigen(request.getCentroAcopioOrigen());
+        envio.setDestino(request.getDestino());
+        envio.setTipoTransporte(validarTipoTransporte(request.getTipoTransporte()));
+        envio.setEstado("EN_PREPARACION");
+        return envio;
     }
 
     public Envio crearDesdeDonacion(DonacionDTO donacion) {
-        return Envio.builder()
-                .donacionId(donacion.getId())
-                .centroAcopioOrigen("CENTRO_CENTRAL_GENERICO") // Valor por defecto
-                .destino("DESTINO_POR_DEFINIR")             // Valor por defecto
-                .tipoTransporte("TERRESTRE")
-                .estado("EN_PREPARACION")
-                .build();
+        Envio envio = new Envio();
+        envio.setDonacionId(donacion.getId());
+        envio.setCentroAcopioOrigen("CENTRO_CENTRAL_GENERICO");
+        envio.setDestino("DESTINO_POR_DEFINIR");
+        envio.setTipoTransporte("TERRESTRE");
+        envio.setEstado("EN_PREPARACION");
+        return envio;
     }
 
     private String validarTipoTransporte(String tipo) {
