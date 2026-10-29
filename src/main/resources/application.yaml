@@ -4,6 +4,16 @@ server:
 spring:
   application:
     name: donaton-ms-logistica
+  datasource:
+    url: jdbc:postgresql://100.48.180.247:5432/logistica_db
+    username: postgres
+    password: hola1234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
   rabbitmq:
     host: 100.48.180.247
     port: 5672
@@ -21,3 +31,8 @@ app:
       logistica: cola.documentos
     routing-keys:
       documento-generado: documento.generado
+
+donaton:
+  ms:
+    donaciones:
+      url: http://localhost:8081
