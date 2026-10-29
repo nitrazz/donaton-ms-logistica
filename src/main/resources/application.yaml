@@ -5,7 +5,7 @@ spring:
   application:
     name: donaton-ms-logistica
   rabbitmq:
-    host: 54.221.4.1
+    host: 100.48.180.247
     port: 5672
     username: guest
     password: guest
